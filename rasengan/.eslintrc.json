@@ -54,8 +54,8 @@
     "no-nested-ternary": "off",
     "default-param-last": ["error"],
     "jsx-quotes": ["error", "prefer-single"],
+    "object-curly-spacing": ["error", "always"],
     "quotes": [2, "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
-    "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", "ts", ".tsx"] }],
     "react/function-component-definition": [
       2,
