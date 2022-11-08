@@ -3,7 +3,10 @@ import { InjectModel } from '@nestjs/sequelize';
 
 import { User } from '../../model/User.model';
 import { UserPersonalInfo } from '../../model/UserPersonalInfo.model';
-import { CreateUserDto } from '../dtos/User.dto';
+import {
+  CreateUserWithoutIdDto,
+  CreateUserWithoutPasswordDto,
+} from '../dtos/User.dto';
 
 import { hashPassword } from './user.utils';
 
@@ -17,9 +20,8 @@ export class UserService {
   ) {}
 
   async createNewUser(
-    user: Omit<CreateUserDto, 'id'>,
-  ): Promise<Omit<CreateUserDto, 'password'>> {
-    console.log('user -----> ', user);
+    user: CreateUserWithoutIdDto,
+  ): Promise<CreateUserWithoutPasswordDto> {
     const { email, password, firstName, lastName, gender, phone, birthday } =
       user;
 
@@ -45,5 +47,9 @@ export class UserService {
       phone: resultInfo.phone,
       birthday: resultInfo.birthday,
     };
+  }
+
+  async findOne(email: string): Promise<User> {
+    return await this.userModel.findOne({ where: { email } });
   }
 }

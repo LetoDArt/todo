@@ -1,4 +1,4 @@
-export class CreateUserDto {
+class CreateUserDto {
   readonly id: string;
   readonly email: string;
   readonly password: string;
@@ -9,7 +9,16 @@ export class CreateUserDto {
   readonly phone: string;
 }
 
-export class LoginUserDto {
+class LoginUserDto {
+  readonly id: string;
   readonly email: string;
   readonly password: string;
 }
+
+export type LoginUserFullDto = LoginUserDto;
+export type LoginUserWithoutIdDto = Omit<LoginUserDto, 'id'>;
+export type LoginUserWithoutPasswordDto = Omit<LoginUserDto, 'password'>;
+
+export type CreateUserFullDto = CreateUserDto;
+export type CreateUserWithoutIdDto = Omit<CreateUserDto, 'id'>;
+export type CreateUserWithoutPasswordDto = Omit<CreateUserDto, 'password'>;
