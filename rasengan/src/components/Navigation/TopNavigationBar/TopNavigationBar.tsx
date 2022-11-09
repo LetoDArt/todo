@@ -1,8 +1,8 @@
 import React from 'react';
-import { TopNavigationBarContainer, TopNavigationBarContent, } from './TopNavigationBar.styled';
 
 import Logo from '../../Logo/Logo';
 import NavigationBar from './NavigationBar/NavigationBar';
+import { TopNavigationBarContainer, TopNavigationBarContent, } from './TopNavigationBar.styled';
 
 const TopNavigationBar = () => (
   <TopNavigationBarContainer>

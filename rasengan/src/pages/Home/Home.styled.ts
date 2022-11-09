@@ -13,9 +13,12 @@ export const SloganContainer = styled(Box)(() => ({
 }))
 
 export const SloganLine = styled(Box)(() => ({
-  color: '#42aaff',
   fontSize: '72px',
   fontFamily: "'Dancing Script', cursive",
+
+  '@media (max-width: 650px)': {
+    fontSize: '36px',
+  }
 }))
 
 export const GetStartedButton = styled(Link)(() => ({
@@ -26,6 +29,7 @@ export const GetStartedButton = styled(Link)(() => ({
   backgroundColor: '#42aaff',
   color: '#fff',
   borderRadius: '7px',
+  fontFamily: "'Kalam', cursive",
 
   '&:hover': {
     opacity: '.5',

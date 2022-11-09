@@ -2,11 +2,9 @@ import { Box, styled } from '@mui/material';
 
 export const TopNavigationBarContainer = styled(Box)(() => ({
   display: 'grid',
-  margin: 'auto',
   width: '100%',
   height: '50px',
-  maxWidth: '1440px',
-  minWidth: '320px',
+  backgroundColor: '#42aaff',
 }))
 
 export const TopNavigationBarContent = styled(Box)(() => ({
@@ -14,6 +12,9 @@ export const TopNavigationBarContent = styled(Box)(() => ({
   gridTemplateColumns: 'auto auto',
   width: '100%',
   height: '100%',
+  maxWidth: '1440px',
+  minWidth: '320px',
+  margin: 'auto',
   justifyContent: 'space-between',
 }))
 

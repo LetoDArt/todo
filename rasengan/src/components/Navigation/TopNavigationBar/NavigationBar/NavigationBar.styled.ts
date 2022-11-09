@@ -17,19 +17,20 @@ export const LinksContainer = styled(Box)(() => ({
 
 export const OneLink = styled(Link)(() => ({
   display: 'inline',
-  marginRight: '24px',
+  marginRight: '12px',
   minWidth: '50px',
-  color: '#42aaff',
+  color: '#fff',
   textDecoration: 'none',
+  padding: '5px 10px',
+  borderRadius: '5px',
+  fontFamily: "'Kalam', cursive",
+
+  '&:hover': {
+    backgroundColor: '#fff',
+    color: '#42aaff',
+  },
+
   '&:last-child': {
     margin: 0,
   }
-}))
-
-export const InfoContainer = styled(Box)(() => ({
-  display: 'grid',
-  margin: 'auto 0',
-  width: '100%',
-  gridTemplateColumns: 'auto auto',
-  justifyContent: 'space-between',
 }))

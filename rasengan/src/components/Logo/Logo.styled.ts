@@ -10,14 +10,14 @@ export const TopNavigationBarLogoContainer = styled(Box)(() => ({
 export const TopNavigationBarLogoLink = styled(Link)(() => ({
   display: 'grid',
   textDecoration: 'none',
-  color: '#42aaff',
+  color: '#fff',
   lineHeight: '15px',
+  fontSize: '13px',
   fontFamily: "'Dancing Script', cursive",
 }))
 
 export const TopNavigationBarLogoLine = styled(Box)(() => ({
   display: 'grid',
   textDecoration: 'none',
-  color: '#42aaff',
   fontFamily: "'Dancing Script', cursive",
 }))
