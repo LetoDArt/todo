@@ -1,18 +1,22 @@
 import { Navigate } from 'react-router-dom';
 
+import Home from '../pages/Home/Home';
+import Login from '../pages/Login/Login';
+import Registration from '../pages/Registration/Registration';
+
 
 export const routes = [
   {
     path: '/',
-    element: <div>Home</div>
+    element: <Home />,
   },
   {
     path: '/login',
-    element: <div>Login</div>
+    element: <Login />,
   },
   {
-    path: '/register',
-    element: <div>Register</div>
+    path: '/signup',
+    element: <Registration />,
   },
   {
     path: '*',
