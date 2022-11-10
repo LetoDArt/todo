@@ -12,7 +12,7 @@ export const customMainTheme = createTheme({
         },
         root: {
           fontFamily: "'Varela Round', sans-serif",
-          '&:hover': {
+          '&:not(.Mui-error):hover': {
             '& .MuiOutlinedInput-notchedOutline': {
               borderColor: THE_MAIN_BLUE,
             },
@@ -28,6 +28,7 @@ export const customMainTheme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
+          color: THE_MAIN_BLUE,
           fontFamily: "'Kalam',cursive",
           '&.Mui-focused': {
             color: THE_MAIN_BLUE,
