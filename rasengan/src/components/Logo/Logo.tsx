@@ -7,13 +7,7 @@ const Logo = () => (
   <TopNavigationBarLogoContainer>
     <TopNavigationBarLogoLink to='/'>
       <TopNavigationBarLogoLine>
-        To Do
-      </TopNavigationBarLogoLine>
-      <TopNavigationBarLogoLine>
-        or
-      </TopNavigationBarLogoLine>
-      <TopNavigationBarLogoLine>
-        Not To Do
+        To Do<br />Or<br />Not To Do
       </TopNavigationBarLogoLine>
     </TopNavigationBarLogoLink>
   </TopNavigationBarLogoContainer>

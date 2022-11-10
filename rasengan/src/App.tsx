@@ -1,20 +1,27 @@
 import React from 'react';
+import { ThemeProvider } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
+
+import Navigation from './components/Navigation/Navigation';
+
+import { customMainTheme } from './theme/customMainTheme';
+import { routes } from './routes/Routes';
 
 import './App.scss';
 
-import { routes } from './routes/Routes';
-import Navigation from './components/Navigation/Navigation';
 
 const App = () => (
   <div className='App'>
-    <Navigation>
-      <Routes>
-        {routes.map((route) => (
-          <Route key={route.path} path={route.path} element={route.element}/>
-        ))}
-      </Routes>
-    </Navigation>
+    <ThemeProvider theme={customMainTheme} >
+      <Navigation>
+        <Routes>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element}/>
+          ))}
+        </Routes>
+      </Navigation>
+    </ThemeProvider>
+
   </div>
 )
 

@@ -1,12 +1,16 @@
 import React from 'react';
+
 import { LinksContainer, NavigationBarContainer, OneLink } from './NavigationBar.styled';
+
+import { LINKS } from './NavigationBar.consts';
 
 
 const NavigationBar = () => (
   <NavigationBarContainer>
     <LinksContainer>
-      <OneLink to='/login'>Log In</OneLink>
-      <OneLink to='/signup'>Sign Up</OneLink>
+      {LINKS.map((link) => (
+        <OneLink key={link?.id} to={link?.link}>{link?.label}</OneLink>
+      ))}
     </LinksContainer>
   </NavigationBarContainer>
 );
