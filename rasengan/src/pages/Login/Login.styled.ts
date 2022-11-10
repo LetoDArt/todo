@@ -1,7 +1,8 @@
 import { Box, styled } from '@mui/material';
 
 
-export const LoginContainer = styled(Box)(() => ({
+export const InputContainer = styled(Box)(() => ({
   display: 'grid',
-  margin: 'auto',
+  gridTemplateRows: 'auto',
+  gridRowGap: '24px',
 }))

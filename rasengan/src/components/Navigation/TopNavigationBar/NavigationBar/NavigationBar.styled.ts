@@ -1,6 +1,8 @@
 import { Box, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+import { THE_MAIN_BLUE } from '../../../../consts/consts';
+
 
 export const NavigationBarContainer = styled(Box)(() => ({
   display: 'grid',
@@ -27,7 +29,7 @@ export const OneLink = styled(Link)(() => ({
 
   '&:hover': {
     backgroundColor: '#fff',
-    color: '#42aaff',
+    color: THE_MAIN_BLUE,
   },
 
   '&:last-child': {

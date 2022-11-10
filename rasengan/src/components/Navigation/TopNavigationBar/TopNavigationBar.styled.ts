@@ -1,10 +1,12 @@
 import { Box, styled } from '@mui/material';
 
+import { THE_MAIN_BLUE } from '../../../consts/consts';
+
 export const TopNavigationBarContainer = styled(Box)(() => ({
   display: 'grid',
   width: '100%',
   height: '50px',
-  backgroundColor: '#42aaff',
+  backgroundColor: THE_MAIN_BLUE,
 }))
 
 export const TopNavigationBarContent = styled(Box)(() => ({

@@ -1,11 +1,8 @@
 import { Box, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+import { THE_MAIN_BLUE } from '../../consts/consts';
 
-export const HomeContainer = styled(Box)(() => ({
-  display: 'grid',
-  margin: 'auto',
-}))
 
 export const SloganContainer = styled(Box)(() => ({
   transform: 'rotate(-15deg)',
@@ -26,7 +23,7 @@ export const GetStartedButton = styled(Link)(() => ({
   margin: 'auto',
   padding: '15px 30px',
   textDecoration: 'none',
-  backgroundColor: '#42aaff',
+  backgroundColor: THE_MAIN_BLUE,
   color: '#fff',
   borderRadius: '7px',
   fontFamily: "'Kalam', cursive",
