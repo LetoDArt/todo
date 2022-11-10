@@ -5,7 +5,7 @@ export const LINKS = [
     label: 'Log In',
   },
   {
-    id: 'login_link',
+    id: 'signup_link',
     link: '/signup',
     label: 'Sign Up',
   },

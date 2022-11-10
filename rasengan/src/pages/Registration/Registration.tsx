@@ -8,7 +8,7 @@ const Registration = () => (
   <PageBox>
     <CenteredContainer>
       <ShadowedContainer>
-        <CustomFormContainer title='Sign Up'>
+        <CustomFormContainer submit={() => true} title='Sign Up'>
           <div>Registration</div>
         </CustomFormContainer>
       </ShadowedContainer>
