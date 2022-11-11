@@ -32,9 +32,9 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('/lol')
-  getData(@Request() req) {
-    return req.user;
+  @Get('/profile')
+  async getProfile(@Request() req) {
+    return await this.userService.getUserInfo(req.user.userId);
   }
 
   @Post('/login')

@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LoginUserRequest } from './user.requests';
+
+import { getUserProfile, LoginUserRequest } from './user.requests';
+
+import { AUTHORIZATION_KEY } from '../../../consts/storage.consts';
 import { UserWithoutPassword } from '../../../types/user.types';
 
 
@@ -25,25 +28,46 @@ const initialState: CountState = {
   error: '',
 }
 
-export const testSlice = createSlice({
-  name: 'test',
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
-  reducers: {},
-  extraReducers: {
-    [LoginUserRequest.fulfilled.type]: (state) => {
-      state.isLoading = false;
-      state.authorized = true;
-      state.error = '';
+  reducers: {
+    setAuthorization(state, action: PayloadAction<boolean>) {
+      state.authorized = action.payload
     },
-    [LoginUserRequest.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.isLoading = false;
-      state.authorized = false;
-      state.error = action.payload;
-    },
-    [LoginUserRequest.pending.type]: (state) => {
-      state.isLoading = true;
-    },
-  }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(LoginUserRequest.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(LoginUserRequest.fulfilled, (state) => {
+        state.isLoading = false;
+        state.authorized = true;
+        state.error = '';
+        localStorage.setItem(AUTHORIZATION_KEY, JSON.stringify(state.authorized))
+      })
+      .addCase(LoginUserRequest.rejected, (state, action) => {
+        state.isLoading = false;
+        state.authorized = false;
+        state.error = action.payload ?? '';
+      })
+
+    builder
+      .addCase(getUserProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.error = '';
+      })
+      .addCase(getUserProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.authorized = false;
+        state.error = action.payload ?? '';
+      })
+  },
 });
 
-export default testSlice.reducer;
+export default userSlice.reducer;

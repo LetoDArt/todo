@@ -1,16 +1,27 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { LoginUser } from '../../../types/user.types';
-import { requestToLogin } from '../../../axios/requests/user/user';
+import { LoginUser, UserWithoutPassword } from '../../../types/user.types';
+import { requestToLogin, requestUserProfile } from '../../../axios/requests/user/user';
 
 
-export const LoginUserRequest = createAsyncThunk<void, LoginUser>(
+export const LoginUserRequest = createAsyncThunk<void, LoginUser, { rejectValue: string }>(
   'user/login',
-  async (data, thunkAPI) => {
+  async (data, thunkApi) => {
     try {
       return await requestToLogin(data);
     } catch (e) {
-      return thunkAPI.rejectWithValue('Error')
+      return thunkApi.rejectWithValue('Error')
+    }
+  }
+)
+
+export const getUserProfile = createAsyncThunk<UserWithoutPassword, void, { rejectValue: string }>(
+  'user/profile',
+  async (_, { rejectWithValue }) => {
+    try {
+      return (await requestUserProfile()) as UserWithoutPassword;
+    } catch (e) {
+      return rejectWithValue('error')
     }
   }
 )

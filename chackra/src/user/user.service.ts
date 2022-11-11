@@ -52,4 +52,21 @@ export class UserService {
   async findOne(email: string): Promise<User> {
     return await this.userModel.findOne({ where: { email } });
   }
+
+  async getUserInfo(id: string): Promise<CreateUserWithoutPasswordDto> {
+    const options = (key: string) => ({ where: { [key]: id } });
+
+    const info = await this.userProfileInfoModel.findOne(options('userId'));
+    const user = await this.userModel.findOne(options('id'));
+
+    return {
+      id: info.userId,
+      email: user.email,
+      firstName: info.firstName,
+      lastName: info.lastName,
+      gender: info.gender,
+      phone: info.phone,
+      birthday: info.birthday,
+    };
+  }
 }
