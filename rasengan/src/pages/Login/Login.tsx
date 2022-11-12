@@ -7,7 +7,7 @@ import { InputContainer } from './Login.styled';
 import { CenteredContainer, PageBox, ShadowedContainer } from '../Page.styled';
 import CustomFormContainer from '../../components/CustomFormContainer/CustomFormContainer';
 
-import { useErrorGetter } from './Login.hooks';
+import { useErrorGetter } from '../hooks';
 import { LoginUserRequest } from '../../redux/reducers/User/user.requests';
 
 import { formikInitialState, formikValidationScheme, textFieldsLogin } from './Login.consts';

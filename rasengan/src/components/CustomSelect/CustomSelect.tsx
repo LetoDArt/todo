@@ -1,26 +1,37 @@
 import React, { useId } from 'react';
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
 
 import { CustomSelectProps } from './CustomSelect.types';
 
 
-const CustomSelect = ({ value, onChange, label, options }: CustomSelectProps) => {
+const CustomSelect = ({
+  value,
+  onChange,
+  onBlur,
+  label,
+  options,
+  error,
+  name
+}: CustomSelectProps) => {
   const id = useId();
 
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth error={!!error}>
       <InputLabel id={id}>{label}</InputLabel>
       <Select
         labelId={id}
         id={`select with id: ${id}`}
+        name={name}
         value={value}
         label={label}
         onChange={onChange}
+        onBlur={onBlur}
       >
         {options.map((one) => (
           <MenuItem key={one.id} value={one.value}>{one.label}</MenuItem>
         ))}
       </Select>
+      {error && <FormHelperText>{error}</FormHelperText>}
     </FormControl>
   );
 };

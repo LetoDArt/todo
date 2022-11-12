@@ -10,12 +10,13 @@ const PhoneInput = forwardRef(({ name, onChange, ...props }: PhoneInputTypes, re
   <IMaskInput
     {...props}
     {...ref}
-    mask='+7(#00) 000-00-00'
+    name={name}
+    mask='+7 (#00) 000 00-00'
     definitions={{
       '#': /[1-9]/,
     }}
     onAccept={(value) => onChange({ target: { name, value } })}
-    placeholder='+7(___) ___-__-__'
+    placeholder='+7 (___) ___ __-__'
   />
 ));
 

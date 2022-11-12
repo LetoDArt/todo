@@ -1,18 +1,8 @@
 import * as Yup from 'yup';
 
+import { formikErrorMessages } from '../consts';
 import { FormikLoginValues } from './Login.types';
 import { TextFieldsSettings } from '../types';
-
-const formikErrorMessages = {
-  email: {
-    empty: 'Email address must be specified',
-    nonValid: 'Invalid email address',
-  },
-  password: {
-    empty: 'Password must be specified',
-    nonValid: 'Password must be less than 30 characters and more than 6'
-  }
-}
 
 export const formikInitialState: FormikLoginValues = {
   email: '',
@@ -20,11 +10,11 @@ export const formikInitialState: FormikLoginValues = {
 }
 
 export const formikValidationScheme = Yup.object({
-  email: Yup.string().email(formikErrorMessages.email.nonValid).required(formikErrorMessages.email.empty),
+  email: Yup.string().email(formikErrorMessages.email.nonValid).required(formikErrorMessages.common.empty),
   password: Yup.string()
-    .max(30, formikErrorMessages.password.nonValid)
-    .min(6, formikErrorMessages.password.nonValid)
-    .required(formikErrorMessages.password.empty),
+    .max(30, formikErrorMessages.common.size)
+    .min(6, formikErrorMessages.common.size)
+    .required(formikErrorMessages.common.empty),
 })
 
 export const textFieldsLogin: TextFieldsSettings[] = [

@@ -12,6 +12,9 @@ const CustomDatePicker = ({
   label = 'Datepicker',
   min,
   max,
+  onBlur,
+  error,
+  name,
 }: CustomDatePickerProps) => (
   <LocalizationProvider dateAdapter={AdapterDayjs}>
     <DatePicker
@@ -19,10 +22,19 @@ const CustomDatePicker = ({
       value={value}
       minDate={min}
       maxDate={max}
+      inputFormat='DD.MM.YYYY'
       onChange={(newValue) => {
         setValue(newValue);
       }}
-      renderInput={(params) => <TextField {...params} />}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          name={name}
+          error={!!error}
+          helperText={error}
+          onBlur={onBlur}
+        />
+      )}
     />
   </LocalizationProvider>
 );

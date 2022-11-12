@@ -1,4 +1,5 @@
 import { SelectChangeEvent } from '@mui/material';
+import { FocusEventHandler } from 'react';
 
 
 export interface SelectOptionTypes {
@@ -12,4 +13,7 @@ export interface CustomSelectProps {
   onChange: (event: SelectChangeEvent) => void,
   label: string,
   options: SelectOptionTypes[],
+  onBlur?:  FocusEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined,
+  error?: string,
+  name?: string,
 }
