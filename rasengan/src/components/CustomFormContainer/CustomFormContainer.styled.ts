@@ -1,4 +1,5 @@
 import { styled } from '@mui/material';
+import { THE_MAIN_BLUE } from '../../consts/styles.consts';
 
 
 export const CustomForm = styled('form')(() => ({
@@ -13,4 +14,5 @@ export const CustomFormTitle = styled('h3')(() => ({
   fontFamily: "'Kalam', cursive",
   fontWeight: 700,
   fontSize: '36px',
+  color: THE_MAIN_BLUE,
 }))

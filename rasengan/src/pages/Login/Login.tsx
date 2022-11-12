@@ -10,7 +10,7 @@ import CustomFormContainer from '../../components/CustomFormContainer/CustomForm
 import { useErrorGetter } from './Login.hooks';
 import { LoginUserRequest } from '../../redux/reducers/User/user.requests';
 
-import { formikInitialState, formikValidationScheme, textFields } from './Login.consts';
+import { formikInitialState, formikValidationScheme, textFieldsLogin } from './Login.consts';
 import { FormikLoginValues } from './Login.types';
 
 
@@ -33,7 +33,7 @@ const Login = () => {
         <ShadowedContainer>
           <CustomFormContainer title='Log In' submit={formik.handleSubmit}>
             <InputContainer>
-              {textFields.map((one) => (
+              {textFieldsLogin.map((one) => (
                 <TextField
                   key={one.name}
                   type={one.type}

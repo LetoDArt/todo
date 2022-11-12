@@ -48,6 +48,13 @@ export const customMainTheme = createTheme({
           textTransform: 'capitalize',
         }
       }
+    },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          textAlign: 'left',
+        }
+      }
     }
   }
 });

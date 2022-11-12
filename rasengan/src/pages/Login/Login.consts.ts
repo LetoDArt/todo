@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
-import { FormikLoginValues, TextFieldsSettings } from './Login.types';
+import { FormikLoginValues } from './Login.types';
+import { TextFieldsSettings } from '../types';
 
 const formikErrorMessages = {
   email: {
@@ -26,7 +27,7 @@ export const formikValidationScheme = Yup.object({
     .required(formikErrorMessages.password.empty),
 })
 
-export const textFields: TextFieldsSettings[] = [
+export const textFieldsLogin: TextFieldsSettings[] = [
   {
     type: 'text',
     variant: 'outlined',
