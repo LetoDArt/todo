@@ -57,21 +57,17 @@ export const registrationFormikInitialValues: RegistrationFormikValues = {
 export const formikValidationScheme = Yup.object({
   email: Yup.string().email(formikErrorMessages.email.nonValid).required(formikErrorMessages.common.empty),
   password: Yup.string()
-    .max(30, formikErrorMessages.common.size)
-    .min(6, formikErrorMessages.common.size)
+    .max(30, formikErrorMessages.password.size)
+    .min(6, formikErrorMessages.password.size)
     .required(formikErrorMessages.common.empty),
   repeatPassword: Yup.string()
     .test('repeatPassword', formikErrorMessages.password.match, (_, context) => context.parent.password === context.parent.repeatPassword )
     .required(formikErrorMessages.common.empty),
-  firstName: Yup.string()
-    .max(30, formikErrorMessages.common.size)
-    .min(6, formikErrorMessages.common.size)
+  firstName: Yup.string().required(formikErrorMessages.common.empty),
+  lastName: Yup.string().required(formikErrorMessages.common.empty),
+  phone: Yup.string()
+    .matches(phoneRegExp, formikErrorMessages.phone.nonValid)
     .required(formikErrorMessages.common.empty),
-  lastName: Yup.string()
-    .max(30, formikErrorMessages.common.size)
-    .min(6, formikErrorMessages.common.size)
-    .required(formikErrorMessages.common.empty),
-  phone: Yup.string().matches(phoneRegExp, formikErrorMessages.phone.nonValid).required(formikErrorMessages.common.empty),
   gender: Yup.string().required(formikErrorMessages.common.empty),
   birthday: Yup.date()
     .typeError(formikErrorMessages.birthday.nonValid)

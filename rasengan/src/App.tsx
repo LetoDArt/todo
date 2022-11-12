@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from '@mui/material';
+import { Alert, ThemeProvider } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
 
 import Navigation from './components/Navigation/Navigation';
@@ -27,6 +27,7 @@ const App = () => {
             ))}
           </Routes>
         </Navigation>
+        <Alert severity='success'>success</Alert>
       </ThemeProvider>
     </div>
   )

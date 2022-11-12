@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { InputBaseComponentProps, TextField } from '@mui/material';
 
 import PhoneInput from '../../components/PhoneInput/PhoneInput';
@@ -10,25 +11,32 @@ import CustomDatePicker from '../../components/CustomDatePicker/CustomDatePicker
 import CustomFormContainer from '../../components/CustomFormContainer/CustomFormContainer';
 
 import { useErrorGetter } from '../hooks';
-import { getDateLimitations } from './Registration.utils';
+import { formDataForRequest, getDateLimitations } from './Registration.utils';
 
 import { formikValidationScheme, registrationFormikInitialValues, textFieldsSignup } from './Registration.consts';
 import { ALL_GENDERS } from '../../consts/user.consts';
 import { RegistrationFormikValues } from './Registration.types';
+import { requestToRegisterUser } from '../../axios/requests/user/user';
 
 
 const Registration = () => {
+  const navigate = useNavigate();
+  
   const { min, max } = getDateLimitations();
 
   const formik = useFormik({
     initialValues: registrationFormikInitialValues,
     validationSchema: formikValidationScheme,
     onSubmit: (values) => {
-      console.log(values)
+      const clearedData = formDataForRequest(values)
+      requestToRegisterUser(clearedData).then(() => {
+        navigate('/login')
+      }).catch((e) => {
+        alert(`error ${e}`)
+      })
     }
   })
   const getError = useErrorGetter<typeof formik.touched, typeof formik.errors>(formik.touched, formik.errors)
-
 
   return (
     <PageBox>
@@ -67,7 +75,7 @@ const Registration = () => {
                 min={min}
                 max={max}
                 onBlur={formik.handleBlur}
-                error={formik.errors.birthday}
+                error={getError('birthday') ?? ''}
               />
               <TextField
                 variant='outlined'

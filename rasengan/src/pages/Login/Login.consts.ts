@@ -12,8 +12,8 @@ export const formikInitialState: FormikLoginValues = {
 export const formikValidationScheme = Yup.object({
   email: Yup.string().email(formikErrorMessages.email.nonValid).required(formikErrorMessages.common.empty),
   password: Yup.string()
-    .max(30, formikErrorMessages.common.size)
-    .min(6, formikErrorMessages.common.size)
+    .max(30, formikErrorMessages.password.size)
+    .min(6, formikErrorMessages.password.size)
     .required(formikErrorMessages.common.empty),
 })
 
