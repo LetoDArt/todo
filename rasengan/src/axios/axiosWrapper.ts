@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import { ACCESS_TOKEN_KEY } from '../consts/storage.consts';
 import { AxiosWrapperParams } from './types';
 
 
@@ -12,6 +13,7 @@ export const axiosWrapper = <D, Q, E>({
 }: AxiosWrapperParams<D, Q, E>) => {
   const defaultHeaders = {
     'Content-Type': 'application/json',
+    'authorization': `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}`
   };
   const headers = {
     ...defaultHeaders,

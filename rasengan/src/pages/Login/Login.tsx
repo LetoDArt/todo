@@ -1,23 +1,27 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
+import { useAppDispatch } from '../../redux/hooks/redux.hooks';
 
 import { InputContainer } from './Login.styled';
 import { CenteredContainer, PageBox, ShadowedContainer } from '../Page.styled';
 import CustomFormContainer from '../../components/CustomFormContainer/CustomFormContainer';
 
-import { useErrorGetter } from './Login.hooks';
+import { useErrorGetter } from '../hooks';
+import { LoginUserRequest } from '../../redux/reducers/User/user.requests';
 
-import { formikInitialState, formikValidationScheme, textFields } from './Login.consts';
+import { formikInitialState, formikValidationScheme, textFieldsLogin } from './Login.consts';
 import { FormikLoginValues } from './Login.types';
 
 
 const Login = () => {
+  const dispatch = useAppDispatch();
+  
   const formik = useFormik({
     initialValues: formikInitialState,
     validationSchema: formikValidationScheme,
     onSubmit: values => {
-      console.log(values)
+      dispatch(LoginUserRequest(values))
     }
   })
 
@@ -29,7 +33,7 @@ const Login = () => {
         <ShadowedContainer>
           <CustomFormContainer title='Log In' submit={formik.handleSubmit}>
             <InputContainer>
-              {textFields.map((one) => (
+              {textFieldsLogin.map((one) => (
                 <TextField
                   key={one.name}
                   type={one.type}

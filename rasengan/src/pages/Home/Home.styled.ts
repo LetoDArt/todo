@@ -1,7 +1,7 @@
 import { Box, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import { THE_MAIN_BLUE } from '../../consts/consts';
+import { THE_MAIN_BLUE } from '../../consts/styles.consts';
 
 
 export const SloganContainer = styled(Box)(() => ({

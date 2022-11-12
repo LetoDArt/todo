@@ -4,13 +4,15 @@ import { Box, styled } from '@mui/material';
 export const PageBox = styled(Box)(() => ({
   display: 'grid',
   width: '100%',
-  height: '100%',
-  maxWidth: '1440px',
-  minWidth: '320px',
+  height: 'calc(100% - 64px)',
   margin: 'auto',
+  padding: '32px 0',
+  overflowY: 'auto',
 }));
 
 export const CenteredContainer = styled(Box)(() => ({
+  maxWidth: '1440px',
+  minWidth: '320px',
   display: 'grid',
   margin: 'auto',
 }))

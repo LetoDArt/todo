@@ -1,6 +1,6 @@
 import { Box, styled } from '@mui/material';
 
-import { THE_MAIN_BLUE } from '../../../consts/consts';
+import { THE_MAIN_BLUE } from '../../../consts/styles.consts';
 
 export const TopNavigationBarContainer = styled(Box)(() => ({
   display: 'grid',

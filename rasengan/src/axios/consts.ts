@@ -2,7 +2,9 @@ const base = process.env.REACT_APP_CHACKRA_API;
 
 export const URLs = {
   user: {
-    login: `${base}/user/login`
+    login: `${base}/user/login`,
+    profile: `${base}/user/profile`,
+    register: `${base}/user/create`,
   }
 }
 
