@@ -10,7 +10,7 @@ export const LoginUserRequest = createAsyncThunk<void, LoginUser, { rejectValue:
     try {
       return await requestToLogin(data);
     } catch (e: any) {
-      return rejectWithValue(e?.response?.data.message ?? '')
+      return rejectWithValue(e?.response?.data.message ?? 'unknown')
     }
   }
 )

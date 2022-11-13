@@ -4,7 +4,7 @@ import { getDateLimitations } from './Registration.utils';
 
 import { formikErrorMessages } from '../consts';
 import { TextFieldsSettings } from '../types';
-import { RegistrationFormikValues } from './Registration.types';
+import { RegistrationFormikValues } from '../../components/RegistrationForm/RegistrationForm.types';
 
 
 const phoneRegExp = /^\+[0-9] \([0-9]{3}\) [0-9]{3} [0-9]{2}-[0-9]{2}$/;

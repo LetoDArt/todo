@@ -15,7 +15,7 @@ interface CountState {
 }
 
 const initialState: CountState = {
-  authorized: false,
+  authorized: JSON.parse(localStorage.getItem(AUTHORIZATION_KEY) ?? 'false'),
   user: {
     id: '',
     email: '',
