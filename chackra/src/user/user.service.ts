@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 
 import { User } from '../../model/User.model';
@@ -24,6 +24,14 @@ export class UserService {
   ): Promise<CreateUserWithoutPasswordDto> {
     const { email, password, firstName, lastName, gender, phone, birthday } =
       user;
+
+    const userDB = await this.findOne(email);
+    if (userDB) {
+      throw new HttpException(
+        'User with that email already exists',
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
 
     const hashedPassword = hashPassword(password);
     const resultUser = await this.userModel.create({

@@ -6,11 +6,11 @@ import { requestToLogin, requestUserProfile } from '../../../axios/requests/user
 
 export const LoginUserRequest = createAsyncThunk<void, LoginUser, { rejectValue: string }>(
   'user/login',
-  async (data, thunkApi) => {
+  async (data, { rejectWithValue }) => {
     try {
       return await requestToLogin(data);
-    } catch (e) {
-      return thunkApi.rejectWithValue('Error')
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data.message ?? '')
     }
   }
 )
@@ -20,8 +20,8 @@ export const getUserProfile = createAsyncThunk<UserWithoutPassword, void, { reje
   async (_, { rejectWithValue }) => {
     try {
       return (await requestUserProfile()) as UserWithoutPassword;
-    } catch (e) {
-      return rejectWithValue('error')
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data.message ?? '')
     }
   }
 )

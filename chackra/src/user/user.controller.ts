@@ -5,6 +5,8 @@ import {
   Get,
   Post,
   UseGuards,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 
 import { UserService } from './user.service';
@@ -40,6 +42,14 @@ export class UserController {
   @Post('/login')
   async login(@Body() user: LoginUserWithoutIdDto) {
     const userDB = await this.userService.findOne(user.email);
+
+    if (!userDB) {
+      throw new HttpException(
+        "There's no user with such email",
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
     const validatedUser = await this.authService.validateUser(
       userDB,
       user.email,

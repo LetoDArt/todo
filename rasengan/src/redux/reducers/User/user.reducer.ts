@@ -4,6 +4,7 @@ import { getUserProfile, LoginUserRequest } from './user.requests';
 
 import { AUTHORIZATION_KEY } from '../../../consts/storage.consts';
 import { UserWithoutPassword } from '../../../types/user.types';
+import { errorToast, successToast } from '../../../utils/utils';
 
 
 interface CountState {
@@ -42,12 +43,14 @@ export const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(LoginUserRequest.fulfilled, (state) => {
+        successToast('You are in!');
         state.isLoading = false;
         state.authorized = true;
         state.error = '';
-        localStorage.setItem(AUTHORIZATION_KEY, JSON.stringify(state.authorized))
+        localStorage.setItem(AUTHORIZATION_KEY, JSON.stringify(state.authorized));
       })
       .addCase(LoginUserRequest.rejected, (state, action) => {
+        errorToast(action.payload ?? 'unknown');
         state.isLoading = false;
         state.authorized = false;
         state.error = action.payload ?? '';

@@ -1,5 +1,5 @@
 import { JwtService } from '@nestjs/jwt';
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { checkPassword } from '../user/user.utils';
@@ -27,7 +27,7 @@ export class AuthService {
         email: user.email,
       };
     }
-    return null;
+    throw new HttpException('Wrong password', HttpStatus.UNAUTHORIZED);
   }
 
   async login(user: LoginUserWithoutPasswordDto) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { InputBaseComponentProps, TextField } from '@mui/material';
 
@@ -30,9 +31,10 @@ const Registration = () => {
     onSubmit: (values) => {
       const clearedData = formDataForRequest(values)
       requestToRegisterUser(clearedData).then(() => {
+        toast.success('Registration has been successful')
         navigate('/login')
       }).catch((e) => {
-        alert(`error ${e}`)
+        toast.error(e?.response?.data?.message ?? 'unknown')
       })
     }
   })
