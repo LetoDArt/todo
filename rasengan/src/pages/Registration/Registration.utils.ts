@@ -1,5 +1,5 @@
-import { RegistrationFormikValues } from './Registration.types';
 import { UserWithoutId } from '../../types/user.types';
+import { RegistrationFormikValues } from '../../components/RegistrationForm/RegistrationForm.types';
 
 
 export const getDateLimitations = () => {

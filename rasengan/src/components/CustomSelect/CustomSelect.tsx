@@ -11,13 +11,14 @@ const CustomSelect = ({
   label,
   options,
   error,
-  name
+  name,
+  disabled
 }: CustomSelectProps) => {
   const id = useId();
 
   return (
     <FormControl fullWidth error={!!error}>
-      <InputLabel id={id}>{label}</InputLabel>
+      <InputLabel disabled={disabled} id={id}>{label}</InputLabel>
       <Select
         labelId={id}
         id={`select with id: ${id}`}
@@ -26,6 +27,7 @@ const CustomSelect = ({
         label={label}
         onChange={onChange}
         onBlur={onBlur}
+        disabled={disabled}
       >
         {options.map((one) => (
           <MenuItem key={one.id} value={one.value}>{one.label}</MenuItem>

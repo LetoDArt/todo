@@ -5,6 +5,7 @@ export const URLs = {
     login: `${base}/user/login`,
     profile: `${base}/user/profile`,
     register: `${base}/user/create`,
+    change: `${base}/user/change`,
   }
 }
 

@@ -18,6 +18,7 @@ export const CenteredContainer = styled(Box)(() => ({
 }))
 
 export const ShadowedContainer = styled(Box)(() => ({
+  margin: '0 auto auto 0',
   borderRadius: '10px',
   boxShadow: '4px 4px 8px 8px rgba(34, 60, 80, 0.2)',
   backgroundColor: '#faffff',

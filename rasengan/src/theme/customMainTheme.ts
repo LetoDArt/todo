@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 
-import { THE_MAIN_BLUE } from '../consts/styles.consts';
+import { THE_ERROR_RED, THE_MAIN_BLUE, THE_SUCCESS_GREEN } from '../consts/styles.consts';
 
 
 export const customMainTheme = createTheme({
@@ -12,7 +12,7 @@ export const customMainTheme = createTheme({
         },
         root: {
           fontFamily: "'Varela Round', sans-serif",
-          '&:not(.Mui-error):hover': {
+          '&:not(.Mui-error):not(.Mui-disabled):hover': {
             '& .MuiOutlinedInput-notchedOutline': {
               borderColor: THE_MAIN_BLUE,
             },
@@ -46,6 +46,12 @@ export const customMainTheme = createTheme({
         },
         contained: {
           textTransform: 'capitalize',
+        },
+        containedError: {
+          backgroundColor: THE_ERROR_RED,
+        },
+        containedSuccess: {
+          backgroundColor: THE_SUCCESS_GREEN,
         }
       }
     },

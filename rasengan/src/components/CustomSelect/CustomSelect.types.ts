@@ -16,4 +16,5 @@ export interface CustomSelectProps {
   onBlur?:  FocusEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined,
   error?: string,
   name?: string,
+  disabled?: boolean,
 }

@@ -5,6 +5,9 @@ import {
   Get,
   Post,
   UseGuards,
+  HttpException,
+  HttpStatus,
+  Put,
 } from '@nestjs/common';
 
 import { UserService } from './user.service';
@@ -12,6 +15,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthService } from '../auth/auth.service';
 
 import {
+  CreateUserFullDto,
   CreateUserWithoutIdDto,
   CreateUserWithoutPasswordDto,
   LoginUserWithoutIdDto,
@@ -40,11 +44,26 @@ export class UserController {
   @Post('/login')
   async login(@Body() user: LoginUserWithoutIdDto) {
     const userDB = await this.userService.findOne(user.email);
+
+    if (!userDB) {
+      throw new HttpException(
+        "There's no user with such email",
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
     const validatedUser = await this.authService.validateUser(
       userDB,
       user.email,
       user.password,
     );
     return await this.authService.login(validatedUser);
+  }
+
+  @Put('/change')
+  async change(
+    @Body() user: CreateUserFullDto,
+  ): Promise<CreateUserWithoutPasswordDto> {
+    return await this.userService.updateUser(user);
   }
 }

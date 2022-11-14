@@ -15,6 +15,7 @@ const CustomDatePicker = ({
   onBlur,
   error,
   name,
+  disabled
 }: CustomDatePickerProps) => (
   <LocalizationProvider dateAdapter={AdapterDayjs}>
     <DatePicker
@@ -26,6 +27,7 @@ const CustomDatePicker = ({
       onChange={(newValue) => {
         setValue(newValue);
       }}
+      disabled={disabled}
       renderInput={(params) => (
         <TextField
           {...params}

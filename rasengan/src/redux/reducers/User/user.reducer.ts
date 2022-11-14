@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { getUserProfile, LoginUserRequest } from './user.requests';
+import { changeProfile, getUserProfile, LoginUserRequest } from './user.requests';
 
 import { AUTHORIZATION_KEY } from '../../../consts/storage.consts';
 import { UserWithoutPassword } from '../../../types/user.types';
+import { errorToast, successToast } from '../../../utils/utils';
 
 
 interface CountState {
@@ -14,7 +15,7 @@ interface CountState {
 }
 
 const initialState: CountState = {
-  authorized: false,
+  authorized: JSON.parse(localStorage.getItem(AUTHORIZATION_KEY) ?? 'false'),
   user: {
     id: '',
     email: '',
@@ -42,12 +43,14 @@ export const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(LoginUserRequest.fulfilled, (state) => {
+        successToast('You are in!');
         state.isLoading = false;
         state.authorized = true;
         state.error = '';
-        localStorage.setItem(AUTHORIZATION_KEY, JSON.stringify(state.authorized))
+        localStorage.setItem(AUTHORIZATION_KEY, JSON.stringify(state.authorized));
       })
       .addCase(LoginUserRequest.rejected, (state, action) => {
+        errorToast(action.payload ?? 'unknown');
         state.isLoading = false;
         state.authorized = false;
         state.error = action.payload ?? '';
@@ -66,6 +69,23 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.authorized = false;
         state.error = action.payload ?? '';
+      })
+
+    builder
+      .addCase(changeProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(changeProfile.fulfilled, (state, action) => {
+        successToast('Data have been changed')
+        state.isLoading = false;
+        state.user = action.payload;
+        state.error = '';
+      })
+      .addCase(changeProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload ?? '';
+        errorToast(state.error)
+
       })
   },
 });
