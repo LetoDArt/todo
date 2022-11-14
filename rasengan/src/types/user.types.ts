@@ -9,6 +9,7 @@ interface FullUser {
   phone: string;
 }
 
+export type UserFool = FullUser
 export type UserWithoutId = Omit<FullUser, 'id'>
 export type UserWithoutPassword = Omit<FullUser, 'password'>
 

@@ -2,7 +2,7 @@ import { axiosWrapper } from '../../axiosWrapper';
 
 import { METHODS, URLs } from '../../consts';
 import { ACCESS_TOKEN_KEY } from '../../../consts/storage.consts';
-import { LoginUser, UserWithoutId } from '../../../types/user.types';
+import { LoginUser, UserFool, UserWithoutId } from '../../../types/user.types';
 
 
 export const requestToLogin = async (user: LoginUser) => {
@@ -29,6 +29,16 @@ export const requestToRegisterUser = async (user: UserWithoutId) => {
   const url = URLs.user.register;
   const { data } = await axiosWrapper<LoginUser, null, null>({
     method: METHODS.POST,
+    url,
+    data: user
+  });
+  return data;
+}
+
+export const requestToChange = async (user: UserFool): Promise<UserFool> => {
+  const url = URLs.user.change;
+  const { data } = await axiosWrapper<UserFool, null, null>({
+    method: METHODS.PUT,
     url,
     data: user
   });

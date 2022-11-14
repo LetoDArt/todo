@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
-
 import { Button } from '@mui/material';
+
 import { PageBox } from '../Page.styled';
 import { ProfileContainer } from './Profile.styled';
 import ProfileParody from '../../components/ProfileParody/ProfileParody';
-
-import { useGetProfileInitials, useLogout } from './Profile.hooks';
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
+
+import { useDataChanger, useGetProfileInitials, useLogout } from './Profile.hooks';
+
+import { UserWithoutId } from '../../types/user.types';
 
 
 const Profile = () => {
   const [readonly, setReadOnly] = useState<boolean>(true);
 
   const logout = useLogout();
+  const changeUser = useDataChanger();
   const { initials, states } = useGetProfileInitials();
 
   const edit = () => setReadOnly(!readonly);
+
+  const submition = (user: UserWithoutId) => {
+    edit();
+    changeUser(user);
+  }
 
   return (
     <PageBox>
@@ -24,7 +32,7 @@ const Profile = () => {
         <RegistrationForm
           initialStates={states}
           readonly={readonly}
-          submition={(user) => console.log(user)}
+          submition={submition}
         >
           <>
             <Button

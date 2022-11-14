@@ -1,7 +1,11 @@
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/redux.hooks';
+
 import { userSelector } from '../../redux/selectors/user.selector';
 import { userSlice } from '../../redux/reducers/User/user.reducer';
+import { changeProfile } from '../../redux/reducers/User/user.requests';
+
 import { AUTHORIZATION_KEY } from '../../consts/storage.consts';
+import { UserWithoutId } from '../../types/user.types';
 
 export const useGetProfileInitials = () => {
   const { user } = useAppSelector(userSelector);
@@ -26,5 +30,14 @@ export const useLogout = () => {
   return () => {
     dispatch(setAuthorization(false))
     localStorage.removeItem(AUTHORIZATION_KEY)
+  }
+}
+
+export const useDataChanger = () => {
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector(userSelector)
+
+  return (newUser: UserWithoutId) => {
+    dispatch(changeProfile({ ...newUser, id: user.id }))
   }
 }

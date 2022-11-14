@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { getUserProfile, LoginUserRequest } from './user.requests';
+import { changeProfile, getUserProfile, LoginUserRequest } from './user.requests';
 
 import { AUTHORIZATION_KEY } from '../../../consts/storage.consts';
 import { UserWithoutPassword } from '../../../types/user.types';
@@ -69,6 +69,23 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.authorized = false;
         state.error = action.payload ?? '';
+      })
+
+    builder
+      .addCase(changeProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(changeProfile.fulfilled, (state, action) => {
+        successToast('Data have been changed')
+        state.isLoading = false;
+        state.user = action.payload;
+        state.error = '';
+      })
+      .addCase(changeProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload ?? '';
+        errorToast(state.error)
+
       })
   },
 });
