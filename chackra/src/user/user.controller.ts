@@ -60,6 +60,7 @@ export class UserController {
     return await this.authService.login(validatedUser);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put('/change')
   async change(
     @Body() user: CreateUserFullDto,
