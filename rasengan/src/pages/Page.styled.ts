@@ -2,7 +2,7 @@ import { Box, styled } from '@mui/material';
 
 
 export const PageBox = styled(Box)(() => ({
-  display: 'grid',
+  display: 'flex',
   width: '100%',
   height: 'calc(100% - 64px)',
   margin: 'auto',
