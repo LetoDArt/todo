@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { errorToast, successToast } from '../../../utils/utils';
 import { changeProfile, getUserProfile, LoginUserRequest } from './user.requests';
 
 import { AUTHORIZATION_KEY } from '../../../consts/storage.consts';
 import { UserWithoutPassword } from '../../../types/user.types';
-import { errorToast, successToast } from '../../../utils/utils';
 
 
 interface CountState {

@@ -6,6 +6,11 @@ export const URLs = {
     profile: `${base}/user/profile`,
     register: `${base}/user/create`,
     change: `${base}/user/change`,
+  },
+  matter: {
+    all: `${base}/deal/list`,
+    changeStatus: `${base}/deal/changeStatus`,
+    delete: `${base}/deal/delete`,
   }
 }
 
