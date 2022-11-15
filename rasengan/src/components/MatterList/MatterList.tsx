@@ -8,10 +8,14 @@ import { MatterListProps } from './MatterList.types';
 const MatterList = ({ matters, deleteMatter, changeStatus }: MatterListProps) => {
   const [hide, setHide] = useState(false);
 
+  const activeMatters = matters.filter((one) => one.active);
+  const nonActiveMatters = matters.filter((one) => !one.active);
+
   return (
     <MatterListContainer>
       <HideButtonContainer>
         <ButtonLeft
+          disabled={!matters.length || !nonActiveMatters.length}
           variant='contained'
           onClick={() => setHide(!hide)}
         >
@@ -19,7 +23,7 @@ const MatterList = ({ matters, deleteMatter, changeStatus }: MatterListProps) =>
         </ButtonLeft>
       </HideButtonContainer>
       <ListContainer>
-        {matters.map((one) => (
+        {(hide ? activeMatters.length : matters.length) ? matters.map((one) => (
           <ListItem
             key={one.id}
             id={one.id}
@@ -31,7 +35,8 @@ const MatterList = ({ matters, deleteMatter, changeStatus }: MatterListProps) =>
             deleteMatter={deleteMatter}
             changeStatus={changeStatus}
           />
-        ))}
+        )) : <div>{hide ? 'You do not have active matters' : 'You dont have matters at all'}</div>
+        }
       </ListContainer>
     </MatterListContainer>
   );
