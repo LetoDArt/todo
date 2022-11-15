@@ -1,6 +1,6 @@
 import { Box, Checkbox, styled } from '@mui/material';
 
-import { THE_NOT_IMPORTANT_GRAY } from '../../../consts/styles.consts';
+import { THE_MAIN_BLUE, THE_NOT_IMPORTANT_GRAY } from '../../../consts/styles.consts';
 
 
 export const ListItemContainer = styled(Box)(() => ({
@@ -29,13 +29,14 @@ export const MatterContainer = styled(Box)(() => ({
 export const MatterInfo = styled(Box)(() => ({
   display: 'grid',
   gridTemplateRows: 'auto',
-  gridRowGap: '24px',
+  gridRowGap: '16px',
 }));
 
-export const MatterTitle = styled('h3')(() => ({
+export const MatterTitle = styled('h3')<{ checked: boolean}>(({ checked }) => ({
   margin: 0,
   fontFamily: '"Kalam", cursive',
-  fontSize: '20px'
+  fontSize: '20px',
+  color: checked ? THE_NOT_IMPORTANT_GRAY : THE_MAIN_BLUE,
 }));
 
 export const MatterDate = styled(Box)(() => ({
@@ -43,10 +44,14 @@ export const MatterDate = styled(Box)(() => ({
   color: THE_NOT_IMPORTANT_GRAY,
 }));
 
-export const MatterDescription = styled(Box)(() => ({
+export const MatterDescription = styled(Box)<{ checked: boolean}>(({ checked }) => ({
   textAlign: 'left',
+  verticalAlign: 'top',
   maxWidth: '400px',
   fontFamily: "'Varela Round', sans-serif",
+  lineHeight: '30px',
+  marginBottom: '12px',
+  color: checked ? THE_NOT_IMPORTANT_GRAY : THE_MAIN_BLUE,
 }));
 
 export const ButtonContainer = styled(Box)(() => ({

@@ -2,9 +2,10 @@ import React from 'react';
 
 import { ButtonLeft, HideButtonContainer, ListContainer, MatterListContainer } from './MattersList.styled';
 import ListItem from './ListItem/ListItem';
+import { MatterListProps } from './MatterList.types';
 
 
-const MatterList = () => (
+const MatterList = ({ matters }: MatterListProps) => (
     <MatterListContainer>
       <HideButtonContainer>
         <ButtonLeft
@@ -14,9 +15,15 @@ const MatterList = () => (
         </ButtonLeft>
       </HideButtonContainer>
       <ListContainer>
-        <ListItem />
-        <ListItem />
-        <ListItem />
+        {matters.map((one) => (
+          <ListItem
+            key={one.id}
+            title={one.name}
+            description={one.text}
+            date={one.dateOfCreation}
+            checked={!one.active}
+          />
+        ))}
       </ListContainer>
     </MatterListContainer>
   );

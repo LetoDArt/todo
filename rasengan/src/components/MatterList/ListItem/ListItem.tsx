@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-
 import { Button } from '@mui/material';
-
 
 import {
   ButtonContainer,
@@ -13,8 +11,21 @@ import {
   MatterTitle
 } from './ListItem.styled';
 
-const ListItem = () => {
-  const [check, setChecked] = useState(false);
+import { ListItemProps } from './ListItem.types';
+
+
+const ListItem = ({ title, description, date, checked }: ListItemProps) => {
+  const [check, setChecked] = useState(checked);
+  const dateLocalized = new Date(date).toLocaleDateString(
+    'ru-RU',
+    {
+      hour: 'numeric',
+      minute: 'numeric',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric'
+    }
+  )
 
   return (
     <ListItemContainer>
@@ -23,20 +34,17 @@ const ListItem = () => {
       </CheckBoxContainer>
       <MatterContainer>
         <MatterInfo>
-          <MatterTitle>123</MatterTitle>
-          <MatterDescription>
-            fsgjsdtijg iosttjgiojghiot hioer thioerth ierthertj hhjherj hret
-            fsgjsdtijg iosttjgiojghiot hioer thioerth ierthertj hhjherj hret
-          </MatterDescription>
-          <MatterDate>11.04.2020</MatterDate>
+          <MatterTitle checked={check}>{title}</MatterTitle>
+          <MatterDescription checked={check}>{description}</MatterDescription>
+          <MatterDate>{dateLocalized}</MatterDate>
         </MatterInfo>
         <ButtonContainer>
           <div>
             <Button variant='contained'>Change</Button>
           </div>
-          <div>
+          {check && (<div>
             <Button variant='contained' color='error'>Remove</Button>
-          </div>
+          </div>)}
         </ButtonContainer>
       </MatterContainer>
     </ListItemContainer>

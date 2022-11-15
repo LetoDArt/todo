@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 
-import { THE_ERROR_RED, THE_MAIN_BLUE, THE_SUCCESS_GREEN } from '../consts/styles.consts';
+import { THE_ERROR_RED, THE_MAIN_BLUE, THE_NOT_IMPORTANT_GRAY, THE_SUCCESS_GREEN } from '../consts/styles.consts';
 
 
 export const customMainTheme = createTheme({
@@ -59,6 +59,15 @@ export const customMainTheme = createTheme({
       styleOverrides: {
         select: {
           textAlign: 'left',
+        }
+      }
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          '&.Mui-checked': {
+            color: THE_NOT_IMPORTANT_GRAY,
+          },
         }
       }
     }
