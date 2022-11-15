@@ -23,7 +23,13 @@ export const CheckBoxStyled = styled(Checkbox)(() => ({
 export const MatterContainer = styled(Box)(() => ({
   display: 'grid',
   gridTemplateColumns: 'auto auto',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
+
+  '@media (max-width: 720px)': {
+    gridTemplateColumns: '1fr',
+    gridTemplateRows: 'auto',
+    gridRowGap: '24px',
+  }
 }));
 
 export const MatterInfo = styled(Box)(() => ({
@@ -58,4 +64,8 @@ export const ButtonContainer = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+
+  '@media (max-width: 720px)': {
+    flexDirection: 'row',
+  }
 }));
