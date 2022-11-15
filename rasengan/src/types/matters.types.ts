@@ -8,3 +8,4 @@ interface Matter {
 }
 
 export type FullMatter = Matter;
+export type ChangeMatter = Omit<Matter, 'name' | 'text' | 'dateOfCreation' | 'userId'>;

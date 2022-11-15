@@ -1,8 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
+  Patch,
   Post,
   Query,
   UseGuards,
@@ -18,6 +20,14 @@ import {
   RequestAllListQuery,
   RequestUserParams,
 } from '../dtos/Deal.dto';
+
+interface ParamMatter {
+  id: string;
+}
+
+interface ChangeStatusQuery {
+  active: boolean;
+}
 
 @Controller('deal')
 export class DealController {
@@ -41,5 +51,20 @@ export class DealController {
     @Body() deal: DealItemWithoutId,
   ): Promise<DealItemFull> {
     return this.dealService.createDeal(deal);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('/delete/:id')
+  async deleteMatter(@Param() matter: ParamMatter): Promise<DealItemFull[]> {
+    return this.dealService.deleteDeal(matter.id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('/changeStatus/:id')
+  async changeStatusMatter(
+    @Param() matter: ParamMatter,
+    @Query() query: ChangeStatusQuery,
+  ): Promise<DealItemFull[]> {
+    return this.dealService.changeStatus(matter.id, query.active);
   }
 }

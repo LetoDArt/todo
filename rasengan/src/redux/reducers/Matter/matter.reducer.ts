@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getAllMatters } from './matter.requests';
+import { changeStatus, deleteCurrentMatter, getAllMatters } from './matter.requests';
 
 import { FullMatter } from '../../../types/matters.types';
 
@@ -32,6 +32,34 @@ export const matterSlice = createSlice({
         state.error = '';
       })
       .addCase(getAllMatters.rejected, (state, action) => {
+        state.error = action.payload ?? '';
+        state.isLoading = false;
+      });
+
+    builder
+      .addCase(changeStatus.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(changeStatus.fulfilled, (state, action) => {
+        state.matters = action.payload
+        state.isLoading = false;
+        state.error = '';
+      })
+      .addCase(changeStatus.rejected, (state, action) => {
+        state.error = action.payload ?? '';
+        state.isLoading = false;
+      });
+
+    builder
+      .addCase(deleteCurrentMatter.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteCurrentMatter.fulfilled, (state, action) => {
+        state.matters = action.payload
+        state.isLoading = false;
+        state.error = '';
+      })
+      .addCase(deleteCurrentMatter.rejected, (state, action) => {
         state.error = action.payload ?? '';
         state.isLoading = false;
       });

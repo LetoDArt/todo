@@ -3,8 +3,8 @@ import { Box, Checkbox, styled } from '@mui/material';
 import { THE_MAIN_BLUE, THE_NOT_IMPORTANT_GRAY } from '../../../consts/styles.consts';
 
 
-export const ListItemContainer = styled(Box)(() => ({
-  display: 'grid',
+export const ListItemContainer = styled(Box)<{ hide: boolean }>(({ hide }) => ({
+  display: hide ? 'none' : 'grid',
   gridTemplateColumns: 'auto 1fr',
   margin: '8px 8px 24px 8px',
   padding: '12px',

@@ -1,6 +1,7 @@
 import { Op } from 'sequelize';
 import { InjectModel } from '@nestjs/sequelize';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { v4 as uuidv4 } from 'uuid';
 
 import { checkPassword, hashPassword } from './user.utils';
 
@@ -37,10 +38,12 @@ export class UserService {
 
     const hashedPassword = hashPassword(password);
     const resultUser = await this.userModel.create({
+      id: uuidv4(),
       email,
       password: hashedPassword,
     });
     const resultInfo = await this.userProfileInfoModel.create({
+      id: uuidv4(),
       userId: resultUser.id,
       firstName,
       lastName,

@@ -9,6 +9,8 @@ export const URLs = {
   },
   matter: {
     all: `${base}/deal/list`,
+    changeStatus: `${base}/deal/changeStatus`,
+    delete: `${base}/deal/delete`,
   }
 }
 

@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { requestAllMatters } from '../../../axios/requests/matter/matter';
+import { requestAllMatters, requestToChangeStatus, requestToDelete } from '../../../axios/requests/matter/matter';
 
-import { FullMatter } from '../../../types/matters.types';
+import { ChangeMatter, FullMatter } from '../../../types/matters.types';
 
 
 export const getAllMatters = createAsyncThunk<FullMatter[], string, { rejectValue: string }>(
@@ -10,6 +10,28 @@ export const getAllMatters = createAsyncThunk<FullMatter[], string, { rejectValu
   async (user, { rejectWithValue }) => {
     try {
       return (await requestAllMatters(user)) as FullMatter[];
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data.message ?? '')
+    }
+  }
+);
+
+export const changeStatus = createAsyncThunk<FullMatter[], ChangeMatter, { rejectValue: string }>(
+  'matter/changeStatus',
+  async (matter, { rejectWithValue }) => {
+    try {
+      return (await requestToChangeStatus(matter.id, matter.active)) as FullMatter[];
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data.message ?? '')
+    }
+  }
+);
+
+export const deleteCurrentMatter = createAsyncThunk<FullMatter[], string, { rejectValue: string }>(
+  'matter/delete',
+  async (matter, { rejectWithValue }) => {
+    try {
+      return (await requestToDelete(matter)) as FullMatter[];
     } catch (e: any) {
       return rejectWithValue(e?.response?.data.message ?? '')
     }
