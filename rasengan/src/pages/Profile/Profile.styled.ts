@@ -9,5 +9,11 @@ export const ProfileContainer = styled(Box)(() => ({
   gridTemplateColumns: 'auto 1fr',
   gridColumnGap: '24px',
   margin: '0 auto',
-  padding: '0 24px'
+  padding: '0 24px',
+
+  '@media (max-width: 925px)': {
+    gridTemplateRows: 'auto',
+    gridTemplateColumns: 'none',
+    gridRowGap: '24px',
+  }
 }))
