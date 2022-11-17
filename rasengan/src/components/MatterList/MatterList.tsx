@@ -5,7 +5,7 @@ import ListItem from './ListItem/ListItem';
 import { MatterListProps } from './MatterList.types';
 
 
-const MatterList = ({ matters, deleteMatter, changeStatus }: MatterListProps) => {
+const MatterList = ({ matters, deleteMatter, changeStatus, changeMatter }: MatterListProps) => {
   const [hide, setHide] = useState(false);
 
   const activeMatters = matters.filter((one) => one.active);
@@ -34,6 +34,7 @@ const MatterList = ({ matters, deleteMatter, changeStatus }: MatterListProps) =>
             checked={!one.active}
             deleteMatter={deleteMatter}
             changeStatus={changeStatus}
+            changeMatter={changeMatter}
           />
         )) : <div>{hide ? 'You do not have active matters' : 'You dont have matters at all'}</div>
         }

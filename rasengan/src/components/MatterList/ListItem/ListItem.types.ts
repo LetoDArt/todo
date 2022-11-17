@@ -6,5 +6,6 @@ export interface ListItemProps {
   deleteMatter: (id: string) => void,
   id: string,
   changeStatus: (id: string, active: boolean) => void,
+  changeMatter: (id: string) => void,
   hide: boolean,
 }

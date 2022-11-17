@@ -3,8 +3,8 @@ import { Box, Checkbox, styled } from '@mui/material';
 import { THE_MAIN_BLUE, THE_NOT_IMPORTANT_GRAY } from '../../../consts/styles.consts';
 
 
-export const ListItemContainer = styled(Box)<{ hide: boolean }>(({ hide }) => ({
-  display: hide ? 'none' : 'grid',
+export const ListItemContainer = styled(Box)<{ hide?: 'none' | 'grid' }>(({ hide }) => ({
+  display: hide,
   gridTemplateColumns: 'auto 1fr',
   margin: '8px 8px 24px 8px',
   padding: '12px',
@@ -43,6 +43,11 @@ export const MatterTitle = styled('h3')<{ checked: boolean}>(({ checked }) => ({
   fontFamily: '"Kalam", cursive',
   fontSize: '20px',
   color: checked ? THE_NOT_IMPORTANT_GRAY : THE_MAIN_BLUE,
+  textAlign: 'left',
+
+  '@media (max-width: 720px)': {
+    textAlign: 'center',
+  }
 }));
 
 export const MatterDate = styled(Box)(() => ({
@@ -53,7 +58,7 @@ export const MatterDate = styled(Box)(() => ({
 export const MatterDescription = styled(Box)<{ checked: boolean}>(({ checked }) => ({
   textAlign: 'left',
   verticalAlign: 'top',
-  maxWidth: '400px',
+  maxWidth: '800px',
   fontFamily: "'Varela Round', sans-serif",
   lineHeight: '30px',
   marginBottom: '12px',

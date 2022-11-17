@@ -1,6 +1,14 @@
 import { useCallback } from 'react';
-import { changeStatus, deleteCurrentMatter } from '../../redux/reducers/Matter/matter.requests';
+
+import {
+  changeMatter,
+  changeStatus,
+  createNewOne,
+  deleteCurrentMatter
+} from '../../redux/reducers/Matter/matter.requests';
 import { useAppDispatch } from '../../redux/hooks/redux.hooks';
+
+import { MatterFormik } from '../../types/matters.types';
 
 
 export const useDeleteMatter = () => {
@@ -17,4 +25,20 @@ export const useChangeStatus = () => {
   return useCallback((id: string, active: boolean) => {
     dispatch(changeStatus({ id, active }))
   }, []);
+}
+
+export const useNewMatterCreator = (userId: string) => {
+  const dispatch = useAppDispatch();
+
+  return useCallback((matter: MatterFormik) => {
+    dispatch(createNewOne({ userId, ...matter }));
+  }, [userId]);
+}
+
+export const useNewMatterChanger = (id: string) => {
+  const dispatch = useAppDispatch();
+
+  return useCallback((matter: MatterFormik) => {
+    dispatch(changeMatter({ id, ...matter }));
+  }, [id]);
 }

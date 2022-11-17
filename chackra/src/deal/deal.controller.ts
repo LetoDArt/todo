@@ -6,8 +6,10 @@ import {
   Param,
   Patch,
   Post,
+  Put,
   Query,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 
 import { AuthService } from '../auth/auth.service';
@@ -19,6 +21,7 @@ import {
   DealItemWithoutId,
   RequestAllListQuery,
   RequestUserParams,
+  UpdateDeal,
 } from '../dtos/Deal.dto';
 
 interface ParamMatter {
@@ -49,22 +52,40 @@ export class DealController {
   @Post('/create')
   async createNewMatter(
     @Body() deal: DealItemWithoutId,
-  ): Promise<DealItemFull> {
+  ): Promise<DealItemFull[]> {
     return this.dealService.createDeal(deal);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete('/delete/:id')
-  async deleteMatter(@Param() matter: ParamMatter): Promise<DealItemFull[]> {
-    return this.dealService.deleteDeal(matter.id);
+  async deleteMatter(
+    @Request() req,
+    @Param() matter: ParamMatter,
+  ): Promise<DealItemFull[]> {
+    return this.dealService.deleteDeal(matter.id, req.user.userId);
   }
 
   @UseGuards(JwtAuthGuard)
   @Patch('/changeStatus/:id')
   async changeStatusMatter(
+    @Request() req,
     @Param() matter: ParamMatter,
     @Query() query: ChangeStatusQuery,
   ): Promise<DealItemFull[]> {
-    return this.dealService.changeStatus(matter.id, query.active);
+    console.log(req.user);
+    return this.dealService.changeStatus(
+      matter.id,
+      query.active,
+      req.user.userId,
+    );
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Put('/change')
+  async changeMatter(
+    @Request() req,
+    @Body() matter: UpdateDeal,
+  ): Promise<DealItemFull[]> {
+    return this.dealService.changeMatter(matter, req.user.userId);
   }
 }

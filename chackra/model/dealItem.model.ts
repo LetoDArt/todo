@@ -1,6 +1,7 @@
 import {
   AllowNull,
   Column,
+  DataType,
   Default,
   ForeignKey,
   IsUUID,
@@ -32,7 +33,7 @@ export class DealItem extends Model {
 
   @AllowNull(true)
   @Default('To do it')
-  @Column
+  @Column(DataType.TEXT('long'))
   text: string;
 
   @AllowNull(false)
