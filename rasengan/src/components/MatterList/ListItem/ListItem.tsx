@@ -23,6 +23,7 @@ const ListItem = ({
   deleteMatter,
   changeStatus,
   hide,
+  changeMatter
 }: ListItemProps) => {
   const dateLocalized = new Date(date).toLocaleDateString(
     'ru-RU',
@@ -36,7 +37,7 @@ const ListItem = ({
   )
 
   return (
-    <ListItemContainer hide={hide && checked}>
+    <ListItemContainer hide={hide && checked ? 'none' : 'grid'}>
       <CheckBoxContainer>
         <CheckBoxStyled checked={checked} onClick={() => changeStatus(id, checked)}/>
       </CheckBoxContainer>
@@ -48,7 +49,7 @@ const ListItem = ({
         </MatterInfo>
         <ButtonContainer>
           <div>
-            <Button variant='contained'>Change</Button>
+            <Button variant='contained' onClick={() => changeMatter(id)}>Change</Button>
           </div>
           {checked && (<div>
             <Button variant='contained' color='error' onClick={() => deleteMatter(id)}>Remove</Button>

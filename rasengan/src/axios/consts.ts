@@ -11,6 +11,8 @@ export const URLs = {
     all: `${base}/deal/list`,
     changeStatus: `${base}/deal/changeStatus`,
     delete: `${base}/deal/delete`,
+    create: `${base}/deal/create`,
+    update: `${base}/deal/change`,
   }
 }
 

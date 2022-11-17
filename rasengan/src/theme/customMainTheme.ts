@@ -70,6 +70,15 @@ export const customMainTheme = createTheme({
           },
         }
       }
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: THE_MAIN_BLUE,
+          fontFamily: "'Kalam',cursive",
+          fontSize: '16px',
+        }
+      }
     }
   }
 });

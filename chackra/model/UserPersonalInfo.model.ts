@@ -4,16 +4,27 @@ import {
   Column,
   Default,
   ForeignKey,
+  IsUUID,
   Model,
+  PrimaryKey,
   Table,
   Unique,
 } from 'sequelize-typescript';
 import { User } from './User.model';
+import { v4 as uuidv4 } from 'uuid';
 
 @Table({
   tableName: 'user_personal_info',
 })
 export class UserPersonalInfo extends Model {
+  @IsUUID(4)
+  @Default(uuidv4())
+  @PrimaryKey
+  @Unique
+  @AllowNull(false)
+  @Column
+  id: string;
+
   @ForeignKey(() => User)
   @AllowNull(false)
   @Unique

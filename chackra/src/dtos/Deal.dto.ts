@@ -8,6 +8,7 @@ class DealItem {
 }
 
 export type DealItemFull = DealItem;
+export type UpdateDeal = Omit<DealItem, 'dateOfCreation' | 'userId'>;
 export type DealItemWithoutId = Omit<DealItem, 'id' | 'dateOfCreation'>;
 
 export interface RequestUserParams {
