@@ -72,7 +72,6 @@ export class DealController {
     @Param() matter: ParamMatter,
     @Query() query: ChangeStatusQuery,
   ): Promise<DealItemFull[]> {
-    console.log(req.user);
     return this.dealService.changeStatus(
       matter.id,
       query.active,
