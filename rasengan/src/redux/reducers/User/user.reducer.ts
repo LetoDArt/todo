@@ -14,17 +14,19 @@ interface CountState {
   error: string,
 }
 
+const initialUser = {
+  id: '',
+  email: '',
+  firstName: '',
+  lastName: '',
+  gender: '',
+  birthday: '',
+  phone: '',
+}
+
 const initialState: CountState = {
   authorized: JSON.parse(localStorage.getItem(AUTHORIZATION_KEY) ?? 'false'),
-  user: {
-    id: '',
-    email: '',
-    firstName: '',
-    lastName: '',
-    gender: '',
-    birthday: '',
-    phone: '',
-  },
+  user: initialUser,
   isLoading: false,
   error: '',
 }
@@ -35,6 +37,9 @@ export const userSlice = createSlice({
   reducers: {
     setAuthorization(state, action: PayloadAction<boolean>) {
       state.authorized = action.payload
+    },
+    setClearUser(state) {
+      state.user = initialUser
     },
   },
   extraReducers: (builder) => {

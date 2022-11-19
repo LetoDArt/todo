@@ -26,12 +26,13 @@ export const useGetProfileInitials = () => {
 
 export const useLogout = () => {
   const dispatch = useAppDispatch();
-  const { setAuthorization } = userSlice.actions;
+  const { setAuthorization, setClearUser } = userSlice.actions;
   const { clearMatters } = matterSlice.actions;
 
   return () => {
     dispatch(setAuthorization(false));
     dispatch(clearMatters());
+    dispatch(setClearUser())
     localStorage.removeItem(AUTHORIZATION_KEY)
   }
 }
